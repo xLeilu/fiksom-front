@@ -1,0 +1,40 @@
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.bottom-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 30px;
+}
+
+#left{
+    margin-right: auto;
+}
+
+#right{
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    width: 15%;
+}
+
+a{  
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover{
+    text-decoration: underline;
+}

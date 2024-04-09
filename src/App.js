@@ -5,6 +5,7 @@ import MainContent from "./components/MainContent/MainContent";
 import LoginPanel from "./components/LoginPanel/LoginPanel"
 import BasketPanel from "./components/BasketPanel/BasketPanel"
 import UserPanel from './components/UserPanel/UserPanel';
+import RegisterPanel from './components/RegisterPanel/RegisterPanel';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/koszyk" element={<BasketPage />} />
                     <Route path="/profil" element={<UserPage />} />
+                    <Route path ="/rejestracja" element={<RegisterPage />} />
                 </Routes>
             </div>
         </Router>
@@ -57,6 +59,16 @@ function UserPage() {
         <>
             <Header />
             <UserPanel />
+        </>
+    );
+}
+
+function RegisterPage() {
+
+    return (
+        <>
+            <Header />
+            <RegisterPanel />
         </>
     );
 }

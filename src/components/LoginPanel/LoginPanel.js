@@ -60,7 +60,7 @@ const LoginPanel = () => {
     };
 
     return (
-        <main>
+        <div className="login-background">
             <div className="login-panel">
                 <h2>Logowanie</h2>
                 <form onSubmit={handleLogin}>
@@ -87,7 +87,7 @@ const LoginPanel = () => {
                 </div>
                 <button id="register" onClick={onRegisterClick}>Zarejestruj się</button>
             </div>
-        </main>
+        </div>
             
     );
 };

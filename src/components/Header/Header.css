@@ -38,3 +38,11 @@ a{
 a:hover{
     text-decoration: underline;
 }
+
+.login{
+    color: #2196F3;
+}
+
+.logout{
+    color: red;
+}

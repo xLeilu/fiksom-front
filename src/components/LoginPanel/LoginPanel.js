@@ -35,9 +35,21 @@ const LoginPanel = () => {
 
             if(response.status === 200){
                 //po ewentualny cookies
-                //const responseJson = await response.json;
-                console.log("działa")
-                //console.log(responseJson);
+                const responseJson = await response.json();
+                const cookie = responseJson.cookie[0];
+                const username = responseJson.userName;
+                console.log(cookie);
+
+                const cookieAttributes = cookie
+                    .split("; ")
+                    .reduce((acc, attribute) => {
+                        const [key, value] = attribute.split("=");
+                        acc[key] = value;
+                        return acc;
+                    }, {});
+
+                document.cookie = `.AspNetCore.Identity.Application=${cookieAttributes[".AspNetCore.Identity.Application"]}`;
+                document.cookie = `fikscomUser=${username}`
 
                 alert("POMYŚLNIE");
 

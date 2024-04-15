@@ -1,12 +1,21 @@
 import React from "react";
 import "./MainContent.css";
 
-const MainContent = () => {
+const MainContent = ({ isLoggedIn }) => {
     return (
         <main>
-            <>
-                <h2>SKLEP INTERNETOWY</h2>
-            </>
+            {isLoggedIn ? (
+                <>
+                    <h2>SKLEP INTERNETOWY</h2>
+                    <p>Strona dla zalogowanych</p>
+                </>
+            ) : (
+                <>
+                    <h2>SKLEP INTERNETOWY</h2>
+                    <p>Strona dla niezalogowanych</p>
+                </>
+            )}
+            
         </main>
     );
 };

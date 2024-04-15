@@ -6,6 +6,7 @@ import LoginPanel from "./components/LoginPanel/LoginPanel"
 import BasketPanel from "./components/BasketPanel/BasketPanel"
 import UserPanel from './components/UserPanel/UserPanel';
 import RegisterPanel from './components/RegisterPanel/RegisterPanel';
+import { useLoggedInStatus } from './useLoggedInStatus';
 
 function App() {
     return (
@@ -24,26 +25,28 @@ function App() {
 }
 
 function MainPage() {
+    const { isLoggedIn } = useLoggedInStatus();
 
     return (
         <>
-            <Header />
-            <MainContent />
+            <Header isLoggedIn={isLoggedIn} />
+            <MainContent isLoggedIn={isLoggedIn} />
         </>
     );
 }
 
 function LoginPage() {
+    const { isLoggedIn } = useLoggedInStatus();
 
     return (
         <>
-            <Header />
             <LoginPanel />
         </>
     );
 }
 
 function BasketPage() {
+    const { isLoggedIn } = useLoggedInStatus();
 
     return (
         <>
@@ -54,6 +57,7 @@ function BasketPage() {
 }
 
 function UserPage() {
+    const { isLoggedIn } = useLoggedInStatus();
 
     return (
         <>
@@ -64,6 +68,7 @@ function UserPage() {
 }
 
 function RegisterPage() {
+    const { isLoggedIn } = useLoggedInStatus();
 
     return (
         <>

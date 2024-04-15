@@ -3,8 +3,9 @@ import "./Header.css";
 import LoginButton from "./LoginButton";
 import BasketButton from "./BasketButton";
 import UserAccountButton from "./UserAccountButton";
+import LogoutButton from "./LogoutButton"
 
-const Header = () => {
+const Header = ({ isLoggedIn }) => {
     return (
         <header>
             <div className="top-nav">
@@ -14,7 +15,12 @@ const Header = () => {
                 <div id="right">
                     <UserAccountButton/>
                     <BasketButton/>
-                    <LoginButton/>
+                    {isLoggedIn ? (
+                        <LogoutButton/>
+                    ):(
+                        <LoginButton/>
+                    )}
+                    
                 </div>
             </div>
             <div className="bottom-nav">

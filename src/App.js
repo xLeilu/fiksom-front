@@ -7,6 +7,8 @@ import BasketPanel from "./components/BasketPanel/BasketPanel"
 import UserPanel from './components/UserPanel/UserPanel';
 import RegisterPanel from './components/RegisterPanel/RegisterPanel';
 import { useLoggedInStatus } from './useLoggedInStatus';
+import UserData from "./components/UserPanel/UserData";
+import ShoppingList from "./components/UserPanel/ShoppingList";
 
 function App() {
     return (
@@ -18,6 +20,8 @@ function App() {
                     <Route path="/koszyk" element={<BasketPage />} />
                     <Route path="/profil" element={<UserPage />} />
                     <Route path ="/rejestracja" element={<RegisterPage />} />
+                    <Route path="/dane-uzytkownika" element={<UserDataPage />} />
+                    <Route path="/historia-zakupow" element={<ShoppingListPage />} />
                 </Routes>
             </div>
         </Router>
@@ -61,8 +65,8 @@ function UserPage() {
 
     return (
         <>
-            <Header />
-            <UserPanel />
+            <Header isLoggedIn={isLoggedIn} />
+            <UserPanel isLoggedIn={isLoggedIn} />
         </>
     );
 }
@@ -74,6 +78,28 @@ function RegisterPage() {
         <>
             <Header />
             <RegisterPanel />
+        </>
+    );
+}
+
+function UserDataPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <UserData isLoggedIn={isLoggedIn} />
+        </>
+    );
+}
+
+function ShoppingListPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <ShoppingList isLoggedIn={isLoggedIn} />
         </>
     );
 }

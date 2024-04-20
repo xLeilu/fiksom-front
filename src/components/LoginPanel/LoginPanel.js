@@ -58,7 +58,7 @@ const LoginPanel = () => {
             } else if (response.status === 401){
                 alert("Błędy login lub hasło");
             } else {
-                throw new Error("Wystąpił problem z rejestracją");
+                throw new Error("Wystąpił problem z logowaniem");
             }
 
         } catch (error) {

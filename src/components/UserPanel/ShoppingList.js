@@ -2,15 +2,15 @@ import React from "react";
 import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav"
 
-const UserPanel = ({ isLoggedIn }) => {
+const ShoppingList = ({ isLoggedIn }) => {
     return (
         <div className="userPanel">
             {isLoggedIn ? (
                 <>
                     <SideNav />
-                    <div id="userPanelContent">
-                        <h2>Twój profil</h2>
-                        <p>Mozesz tutaj znaleźć dane na temat swojego konta.</p>
+                    <div id="shoppingListContent">
+                        <h2>Historia zakupów</h2>
+                        <p>Mozesz tutaj znaleźć historię swoich zakupów.</p>
                     </div>
                 </>
                 
@@ -23,4 +23,4 @@ const UserPanel = ({ isLoggedIn }) => {
     );
 };
 
-export default UserPanel;
+export default ShoppingList;

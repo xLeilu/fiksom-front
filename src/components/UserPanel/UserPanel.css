@@ -1,6 +1,56 @@
-.user-panel{
+.userPanel{
+    display: flex;
+}
+.UserPanelSideNav{
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+#sideNav{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+#sideNav a{
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+#sideNav b{
+    margin-left: 10px;
+}
+
+#userPanelContent{
+    background-color: #FDFCFA;
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+#userDataContent{
+    background-color: #FDFCFA;
+    width: 100%;
     padding: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#userData{
+    width: 300px;
+}
+#error{
+    text-align: center;
+}
+
+#shoppingListContent{
+    background-color: #FDFCFA;
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
 }

@@ -9,6 +9,8 @@ import RegisterPanel from './components/RegisterPanel/RegisterPanel';
 import { useLoggedInStatus } from './useLoggedInStatus';
 import UserData from "./components/UserPanel/UserData";
 import ShoppingList from "./components/UserPanel/ShoppingList";
+import ProductsPanel from "./components/ProductsPanel/ProductsPanel"
+import AddProduct from "./components/UserPanel/AddProduct"
 
 function App() {
     return (
@@ -22,6 +24,8 @@ function App() {
                     <Route path ="/rejestracja" element={<RegisterPage />} />
                     <Route path="/dane-uzytkownika" element={<UserDataPage />} />
                     <Route path="/historia-zakupow" element={<ShoppingListPage />} />
+                    <Route path="/produkty" element={<ProductsPage />} />
+                    <Route path="/dodaj-produkt" element={<AddProductPage />} />
                 </Routes>
             </div>
         </Router>
@@ -100,6 +104,28 @@ function ShoppingListPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <ShoppingList isLoggedIn={isLoggedIn} />
+        </>
+    );
+}
+
+function ProductsPage() {
+    const {isLoggedIn} = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <ProductsPanel isLoggedIn={isLoggedIn} />
+        </>
+    )
+}
+
+function AddProductPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <AddProduct isLoggedIn={isLoggedIn} />
         </>
     );
 }

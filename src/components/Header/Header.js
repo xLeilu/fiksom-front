@@ -24,10 +24,10 @@ const Header = ({ isLoggedIn }) => {
                 </div>
             </div>
             <div className="bottom-nav">
+                <a href="/produkty" title="All">Wszystkie</a>
                 <a href="#" title="Grafika">Karty graficzne</a>
                 <a href="#" title="RAM">Pamięć RAM</a>
                 <a href="#" title="CPU">Procesory</a>
-                <a href="#" title="xxx">xxx</a>
             </div>
         </header>
     );

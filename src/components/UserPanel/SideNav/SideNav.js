@@ -4,6 +4,7 @@ import "../UserPanel.css";
 import AccountButton from "./AccountButton";
 import ShoppingListButton from "./ShoppingListButton";
 import HomeUserPanel from "./HomeUserPanel";
+import AddProductButton from "./AddProductButton";
 
 
 const SideNav = () => {
@@ -20,6 +21,10 @@ const SideNav = () => {
     const handleHomeUserPanelButtonClick = () => {
         navigate("/profil");
     }
+
+    const handleAddProductButtonClick = () => {
+        navigate("/dodaj-produkt")
+    }
     
     return (
         <div className="UserPanelSideNav">
@@ -32,6 +37,9 @@ const SideNav = () => {
                 </a>
                 <a onClick={handleShoppingListButtonClick} >
                     <ShoppingListButton />
+                </a>
+                <a onClick={handleAddProductButtonClick} >
+                    <AddProductButton />
                 </a>
             </div>
         </div>

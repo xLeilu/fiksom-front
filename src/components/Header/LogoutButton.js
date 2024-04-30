@@ -15,6 +15,7 @@ const Logout = () => {
                 "http://localhost:5046/api/Account/SignOut",
                 {
                     method: "POST",
+                    credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
                     },

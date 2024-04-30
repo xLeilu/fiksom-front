@@ -26,6 +26,7 @@ const LoginPanel = () => {
                 "http://localhost:5046/api/account/SignIn",
                 {
                     method: "POST",
+                    credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
                     },

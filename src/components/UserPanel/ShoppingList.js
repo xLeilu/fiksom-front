@@ -1,6 +1,6 @@
 import React from "react";
 import "./UserPanel.css";
-import SideNav from "./SideNav/SideNav"
+import SideNav from "./SideNav/SideNav";
 
 const ShoppingList = ({ isLoggedIn }) => {
     return (
@@ -13,8 +13,7 @@ const ShoppingList = ({ isLoggedIn }) => {
                         <p>Mozesz tutaj znaleźć historię swoich zakupów.</p>
                     </div>
                 </>
-                
-            ):(
+            ) : (
                 <div id="userPanelContent">
                     <h2>Najpierw się zaloguj</h2>
                 </div>

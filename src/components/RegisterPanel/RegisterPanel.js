@@ -33,7 +33,7 @@ const RegisterPanel = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             const response = await fetch(
                 "http://localhost:5046/api/Account/SignUp",
                 {
@@ -45,21 +45,21 @@ const RegisterPanel = () => {
                 }
             );
 
-            if(response.status === 200) {
+            if (response.status === 200) {
                 alert("Rejestracja pomyślna");
                 navigate("/login");
             } else if (response.status === 401) {
                 alert("Błąd autoryzacji");
-            } else if (response.status === 400){
+            } else if (response.status === 400) {
                 alert("Uzytkownik o podanym adresie e-mail juz istnieje");
             } else {
                 throw new Error("Wystąpił problem z rejestracją");
             }
         } catch (error) {
-            console.error("Błąd: ", error)
+            console.error("Błąd: ", error);
             alert("Wystąpił błąd podczas wysyłania danych");
         }
-    }
+    };
 
     const onLoginClick = () => {
         navigate("/login");
@@ -105,7 +105,9 @@ const RegisterPanel = () => {
                     <div className="text">Masz już konto?</div>
                     <div className="line"></div>
                 </div>
-                <button id="login" onClick={onLoginClick}>Zaloguj się</button>
+                <button id="login" onClick={onLoginClick}>
+                    Zaloguj się
+                </button>
             </div>
         </div>
     );

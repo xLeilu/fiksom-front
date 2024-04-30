@@ -15,7 +15,6 @@ const MainContent = ({ isLoggedIn }) => {
                     <p>Strona dla niezalogowanych</p>
                 </>
             )}
-            
         </main>
     );
 };

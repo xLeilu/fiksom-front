@@ -41,6 +41,7 @@ const AddProduct = ({ isLoggedIn }) => {
                 "http://localhost:5046/api/component/UpsertComponent",
                 {
                     method: "POST",
+                    credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
                     },

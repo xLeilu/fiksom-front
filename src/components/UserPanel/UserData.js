@@ -13,6 +13,7 @@ const UserData = ({ isLoggedIn }) => {
                     "http://localhost:5046/api/Account/GetLoggedUser",
                     {
                         method: "GET",
+                        credentials: "include",
                         headers: {
                             "Content-Type": "application/json",
                         },

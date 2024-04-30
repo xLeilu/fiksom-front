@@ -4,10 +4,10 @@ import SideNav from "./SideNav/SideNav";
 
 const UserData = ({ isLoggedIn }) => {
     const [userData, setUserData] = useState([]);
+    const [loadingData, setLoadingData] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("test");
             try {
                 const response = await fetch(
                     "http://localhost:5046/api/Account/GetLoggedUser",
@@ -23,9 +23,9 @@ const UserData = ({ isLoggedIn }) => {
                 if (response.ok) {
                     const data = await response.json();
 
-                    console.log(data);
+                    setUserData(data);
 
-                    setUserData(data || []);
+                    setLoadingData(false);
                 } else if (response.status === 401) {
                     setUserData([]);
                     alert("Błędy login lub hasło");
@@ -49,16 +49,18 @@ const UserData = ({ isLoggedIn }) => {
                     <SideNav />
                     <div id="userDataContent">
                         <h2>Twoje dane</h2>
-                        {userData.length > 0 ? (
+                        {loadingData ? (
+                            <p>Wczytywanie...</p>
+                        ) : userData.length === 0 ? (
+                            <div id="error">
+                                <p>Błąd wczytywania danych</p>
+                            </div>
+                        ) : (
                             <div id="userData">
                                 <p>Nazwa uzytkownika: {userData.userName}</p>
                                 <p>Email: {userData.email}</p>
                                 <p>Numer telefonu: {userData.phoneNumber}</p>
                                 <p>Nadana rola: {userData.role}</p>
-                            </div>
-                        ) : (
-                            <div id="error">
-                                <p>Błąd wczytywania danych</p>
                             </div>
                         )}
                     </div>

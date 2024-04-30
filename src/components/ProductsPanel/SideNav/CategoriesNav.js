@@ -8,7 +8,6 @@ const CategoriesNav = () => {
                 <p>Kategorie</p>
             </div>
         </div>
-        
     );
 };
 

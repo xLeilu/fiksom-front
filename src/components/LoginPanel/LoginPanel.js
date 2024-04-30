@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./LoginPanel.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,11 +17,11 @@ const LoginPanel = () => {
             [name]: value,
         });
     };
-    
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             const response = await fetch(
                 "http://localhost:5046/api/account/SignIn",
                 {
@@ -33,7 +33,7 @@ const LoginPanel = () => {
                 }
             );
 
-            if(response.status === 200){
+            if (response.status === 200) {
                 //po ewentualny cookies
                 const responseJson = await response.json();
                 const cookie = responseJson.cookie[0];
@@ -49,23 +49,21 @@ const LoginPanel = () => {
                     }, {});
 
                 document.cookie = `.AspNetCore.Identity.Application=${cookieAttributes[".AspNetCore.Identity.Application"]}`;
-                document.cookie = `fikscomUser=${username}`
+                document.cookie = `fikscomUser=${username}`;
 
                 alert("POMYŚLNIE");
 
                 navigate("/");
-
-            } else if (response.status === 401){
+            } else if (response.status === 401) {
                 alert("Błędy login lub hasło");
             } else {
                 throw new Error("Wystąpił problem z logowaniem");
             }
-
         } catch (error) {
-            console.error("Błąd",error);
-            alert("Wystąpił błąd logowania. Spróbuj ponownie.")
+            console.error("Błąd", error);
+            alert("Wystąpił błąd logowania. Spróbuj ponownie.");
         }
-    }
+    };
 
     const onRegisterClick = () => {
         navigate("/rejestracja");
@@ -76,11 +74,11 @@ const LoginPanel = () => {
             <div className="login-panel">
                 <h2>Logowanie</h2>
                 <form onSubmit={handleLogin}>
-                    <input 
-                        type="text" 
-                        name="UserName" 
-                        placeholder="login" 
-                        value={formData.UserName} 
+                    <input
+                        type="text"
+                        name="UserName"
+                        placeholder="login"
+                        value={formData.UserName}
                         onChange={handleInputChange}
                     />
                     <input
@@ -97,10 +95,11 @@ const LoginPanel = () => {
                     <div className="text">Nie masz konta?</div>
                     <div className="line"></div>
                 </div>
-                <button id="register" onClick={onRegisterClick}>Zarejestruj się</button>
+                <button id="register" onClick={onRegisterClick}>
+                    Zarejestruj się
+                </button>
             </div>
         </div>
-            
     );
 };
 

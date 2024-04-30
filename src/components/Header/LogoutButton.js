@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Logout = () => {
     const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Logout = () => {
     const handleLoginClick = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             const response = await fetch(
                 "http://localhost:5046/api/Account/SignOut",
                 {
@@ -22,7 +22,6 @@ const Logout = () => {
             );
 
             if (response.status === 200) {
-
                 document.cookie = ".AspNetCore.Identity.Application=;";
 
                 alert("Wylogowano pomyślnie");
@@ -31,14 +30,17 @@ const Logout = () => {
             } else {
                 throw new Error("Wystąpił problem z wylogowaniem");
             }
-        } catch(error){
+        } catch (error) {
             console.error("Błąd logowania: ", error);
         }
-
-    }
+    };
 
     return (
-        <FontAwesomeIcon icon={faRightFromBracket} className="logout" onClick={handleLoginClick} />
+        <FontAwesomeIcon
+            icon={faRightFromBracket}
+            className="logout"
+            onClick={handleLoginClick}
+        />
     );
 };
 

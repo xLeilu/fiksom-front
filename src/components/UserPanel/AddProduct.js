@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./UserPanel.css";
-import SideNav from "./SideNav/SideNav"
+import SideNav from "./SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = ({ isLoggedIn }) => {
@@ -25,18 +25,18 @@ const AddProduct = ({ isLoggedIn }) => {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        setComponent(prevState => ({
-          ...prevState,
-          image: file
+        setComponent((prevState) => ({
+            ...prevState,
+            image: file,
         }));
     };
 
     const handleAddProduct = async (e) => {
         e.preventDefault();
 
-        console.log(component)
+        console.log(component);
 
-        try{
+        try {
             const response = await fetch(
                 "http://localhost:5046/api/component/UpsertComponent",
                 {
@@ -48,7 +48,7 @@ const AddProduct = ({ isLoggedIn }) => {
                 }
             );
 
-            if(response.status === 200) {
+            if (response.status === 200) {
                 alert("Dodano produkt pomyślnie");
                 navigate("/dodaj-produkt");
             } else if (response.status === 401) {
@@ -57,11 +57,10 @@ const AddProduct = ({ isLoggedIn }) => {
                 throw new Error("Wystąpił problem z dodaniem produktu");
             }
         } catch (error) {
-            console.error("Błąd: ", error)
+            console.error("Błąd: ", error);
             alert("Wystąpił błąd podczas wysyłania danych");
         }
-
-    }
+    };
 
     return (
         <div className="userPanel">
@@ -106,18 +105,16 @@ const AddProduct = ({ isLoggedIn }) => {
                                 value={component.quantityavailable}
                                 onChange={handleInputChange}
                             />
-                            <input 
+                            <input
                                 type="file"
                                 name="image"
-                                
                                 onChange={handleFileChange}
                             />
                             <button type="submit">Dodaj produkt</button>
                         </form>
                     </div>
                 </>
-                
-            ):(
+            ) : (
                 <div id="addProductContent">
                     <h2>Najpierw się zaloguj</h2>
                 </div>

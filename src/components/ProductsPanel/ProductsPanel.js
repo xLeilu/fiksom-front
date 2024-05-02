@@ -7,7 +7,35 @@ const ProductsPanel = ({ isLoggedIn }) => {
     const [productsList, setProductsList] = useState([]);
 
     useEffect(() => {
-        // Fetch product data from API or use local data
+        //http://localhost:5046/api/component/getcomponentbytype/Procesor
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:5046/api/component/getcomponentbytype/ram",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                    }
+                );
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setProductsList(data.content || []);
+                } else if (response.status === 401) {
+                    setProductsList([]);
+                } else {
+                    setProductsList([]);
+                }
+            } catch (error) {
+                setProductsList([]);
+            }
+        };
+
+        fetchData();
     }, []);
 
     return (

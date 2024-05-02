@@ -43,7 +43,7 @@ const AddProduct = ({ isLoggedIn }) => {
         );
 
         if (image != null) {
-            formData.append("Component.Image", image);
+            formData.append("Image", image);
         }
 
         try {

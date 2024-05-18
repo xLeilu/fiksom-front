@@ -7,12 +7,12 @@ const ProductsPanel = ({ isLoggedIn }) => {
     const [productsList, setProductsList] = useState([]);
 
     useEffect(() => {
-        //http://localhost:5046/api/component/getcomponentbytype/Procesor
+        //http://localhost:5046/api/component/getcomponentsbytype/Procesor
 
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:5046/api/component/getcomponentbytype/ram",
+                    "http://localhost:5046/api/component/getcomponentsbytype/ram",
                     {
                         method: "GET",
                         headers: {
@@ -24,7 +24,8 @@ const ProductsPanel = ({ isLoggedIn }) => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setProductsList(data.content || []);
+                    console.log(data);
+                    setProductsList(data || []);
                 } else if (response.status === 401) {
                     setProductsList([]);
                 } else {
@@ -42,14 +43,16 @@ const ProductsPanel = ({ isLoggedIn }) => {
         <div className="productListContent">
             <CategoriesNav />
             {productsList.length === 0 ? (
-                <div id="productsList">
+                <div id="productsListError">
                     <p>Brak produktów</p>
                 </div>
             ) : (
-                <div id="productsList">
-                    {productsList.map((product) => (
-                        <ProductItem key={product.id} product={product} />
-                    ))}
+                <div id="productsListContainer">
+                    <div id="productsList">
+                        {productsList.map((product) => (
+                            <ProductItem key={product.id} product={product} />
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

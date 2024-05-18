@@ -6,46 +6,53 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = ({ isLoggedIn }) => {
     const navigate = useNavigate();
 
-    const [component, setComponent] = useState({
-        componenttype: "",
-        manufacturer: "",
-        model: "",
-        price: 10.0,
-        quantityavailable: 1,
-        image: null,
+    const [Component, setComponent] = useState({
+        ComponentType: "",
+        Manufacturer: "",
+        Model: "",
+        Price: 10.0,
+        QuantityAvailable: 1,
     });
+
+    const [image, setImage] = useState(null);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setComponent({
-            ...component,
+            ...Component,
             [name]: value,
         });
     };
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        setComponent((prevState) => ({
-            ...prevState,
-            image: file,
-        }));
+        setImage(file);
     };
 
     const handleAddProduct = async (e) => {
         e.preventDefault();
 
-        console.log(component);
+        const formData = new FormData();
+        formData.append("Component.ComponentType", Component.ComponentType);
+        formData.append("Component.Manufacturer", Component.Manufacturer);
+        formData.append("Component.Model", Component.Model);
+        formData.append("Component.Price", Component.Price);
+        formData.append(
+            "Component.QuantityAvailable",
+            Component.QuantityAvailable
+        );
+
+        if (image != null) {
+            formData.append("Image", image);
+        }
 
         try {
             const response = await fetch(
-                "http://localhost:5046/api/component/UpsertComponent",
+                "http://localhost:5046/api/Component/UpsertComponent",
                 {
                     method: "POST",
                     credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(component),
+                    body: formData,
                 }
             );
 
@@ -73,37 +80,37 @@ const AddProduct = ({ isLoggedIn }) => {
                         <form onSubmit={handleAddProduct}>
                             <input
                                 type="text"
-                                name="componenttype"
+                                name="ComponentType"
                                 placeholder="rodzaj"
-                                value={component.componenttype}
+                                value={Component.ComponentType}
                                 onChange={handleInputChange}
                             />
                             <input
                                 type="text"
-                                name="manufacturer"
-                                placeholder="producent"
-                                value={component.manufacturer}
+                                name="Manufacturer"
+                                placeholder="Producent"
+                                value={Component.Manufacturer}
                                 onChange={handleInputChange}
                             />
                             <input
                                 type="text"
-                                name="model"
-                                placeholder="model"
-                                value={component.model}
+                                name="Model"
+                                placeholder="Model"
+                                value={Component.Model}
                                 onChange={handleInputChange}
                             />
                             <input
                                 type="number"
-                                name="price"
+                                name="Price"
                                 placeholder="cena"
-                                value={component.price}
+                                value={Component.Price}
                                 onChange={handleInputChange}
                             />
                             <input
                                 type="number"
-                                name="quantityavailable"
+                                name="QuantityAvailable"
                                 placeholder="ilość"
-                                value={component.quantityavailable}
+                                value={Component.QuantityAvailable}
                                 onChange={handleInputChange}
                             />
                             <input

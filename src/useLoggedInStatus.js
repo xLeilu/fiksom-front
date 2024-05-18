@@ -6,17 +6,19 @@ export const useLoggedInStatus = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const loggedIn = checkLoggedIn();
+        const loggedIn = checkLoggedIn(".AspNetCore.Identity.Application");
         setIsLoggedIn(loggedIn);
     }, [location.pathname]);
 
-    const checkLoggedIn = () => {
-        const cookieValue = document.cookie
-            .split("; ")
-            .find((row) => row.startsWith(".AspNetCore.Identity.Application="))
-            ?.split("=")[1];
-
-        return !!cookieValue;
+    const checkLoggedIn = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        console.log(value);
+        if (parts.length === 2) {
+            const cookieValue = parts.pop().split(";").shift();
+            return !!cookieValue;
+        }
+        return false;
     };
 
     return { isLoggedIn };

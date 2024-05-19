@@ -30,7 +30,10 @@ function App() {
                         path="/historia-zakupow"
                         element={<ShoppingListPage />}
                     />
-                    <Route path="/produkty" element={<ProductsPage />} />
+                    <Route
+                        path="/produkty/:productType?"
+                        element={<ProductsPage />}
+                    />
                     <Route path="/dodaj-produkt" element={<AddProductPage />} />
                 </Routes>
             </div>

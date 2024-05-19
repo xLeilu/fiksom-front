@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./ProductsPanel.css";
 import ProductItem from "./ProductItem";
 import CategoriesNav from "./SideNav/CategoriesNav";
 
 const ProductsPanel = ({ isLoggedIn }) => {
     const [productsList, setProductsList] = useState([]);
+    const { productType } = useParams();
 
     useEffect(() => {
-        //http://localhost:5046/api/component/getcomponentsbytype/Procesor
-
         const fetchData = async () => {
             try {
+                const type = productType || "";
                 const response = await fetch(
-                    "http://localhost:5046/api/component/getcomponentsbytype/ram",
+                    `http://localhost:5046/api/component/getcomponentsbytype/${type}`,
                     {
                         method: "GET",
                         headers: {
@@ -37,7 +38,7 @@ const ProductsPanel = ({ isLoggedIn }) => {
         };
 
         fetchData();
-    }, []);
+    }, [productType]);
 
     return (
         <div className="productListContent">

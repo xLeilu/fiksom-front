@@ -4,6 +4,7 @@ import LoginButton from "./LoginButton";
 import BasketButton from "./BasketButton";
 import UserAccountButton from "./UserAccountButton";
 import LogoutButton from "./LogoutButton";
+import { Link } from "react-router-dom";
 
 const Header = ({ isLoggedIn }) => {
     return (
@@ -21,18 +22,18 @@ const Header = ({ isLoggedIn }) => {
                 </div>
             </div>
             <div className="bottom-nav">
-                <a href="/produkty" title="All">
+                <Link to="/produkty" title="All">
                     Wszystkie
-                </a>
-                <a href="#" title="Grafika">
+                </Link>
+                <Link to="/produkty/Karta Graficzna" title="Grafika">
                     Karty graficzne
-                </a>
-                <a href="#" title="RAM">
+                </Link>
+                <Link to="/produkty/RAM" title="RAM">
                     Pamięć RAM
-                </a>
-                <a href="#" title="CPU">
+                </Link>
+                <Link to="/produkty/Procesor" title="CPU">
                     Procesory
-                </a>
+                </Link>
             </div>
         </header>
     );

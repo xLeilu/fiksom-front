@@ -117,11 +117,13 @@ const AddProduct = ({ isLoggedIn }) => {
                                 <option value="" disabled>
                                     Wybierz kategorię
                                 </option>
-                                {Object.keys(categories).map((key) => (
-                                    <option key={key} value={key}>
-                                        {categories[key]}
-                                    </option>
-                                ))}
+                                {Object.entries(categories).map(
+                                    ([key, value]) => (
+                                        <option key={key} value={value}>
+                                            {value}
+                                        </option>
+                                    )
+                                )}
                             </select>
                             <input
                                 type="text"

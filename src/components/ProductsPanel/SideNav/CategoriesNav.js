@@ -4,9 +4,7 @@ import "../ProductsPanel.css";
 const CategoriesNav = () => {
     return (
         <div className="productsPanelSideNav">
-            <div id="categoriesSideNav">
-                <p>Kategorie</p>
-            </div>
+            <div id="categoriesSideNav"></div>
         </div>
     );
 };

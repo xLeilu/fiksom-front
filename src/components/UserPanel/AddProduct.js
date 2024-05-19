@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,36 @@ const AddProduct = ({ isLoggedIn }) => {
     });
 
     const [image, setImage] = useState(null);
+
+    const [categories, setCategories] = useState({});
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:5046/api/component/gettypes",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                    }
+                );
+                if (response.ok) {
+                    const data = await response.json();
+                    setCategories(data);
+                } else {
+                    setCategories([]);
+                }
+            } catch (error) {
+                setCategories([]);
+                console.error("Błąd podczas pobierania danych z API:", error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -78,13 +108,21 @@ const AddProduct = ({ isLoggedIn }) => {
                     <div id="addProductContent">
                         <h2>Dodawanie produktu</h2>
                         <form onSubmit={handleAddProduct}>
-                            <input
-                                type="text"
+                            <select
+                                id="ComponentType"
                                 name="ComponentType"
-                                placeholder="rodzaj"
                                 value={Component.ComponentType}
                                 onChange={handleInputChange}
-                            />
+                            >
+                                <option value="" disabled>
+                                    Wybierz kategorię
+                                </option>
+                                {Object.keys(categories).map((key) => (
+                                    <option key={key} value={key}>
+                                        {categories[key]}
+                                    </option>
+                                ))}
+                            </select>
                             <input
                                 type="text"
                                 name="Manufacturer"

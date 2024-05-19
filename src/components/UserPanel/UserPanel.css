@@ -76,7 +76,8 @@
     transform: translate(23%,0%);
 }
 
-#addProductContent input{
+#addProductContent input,
+form select{
     border-radius: 5px;
     font-size: 14px;
     width: 50%;

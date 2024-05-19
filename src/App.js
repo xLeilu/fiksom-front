@@ -11,6 +11,7 @@ import UserData from "./components/UserPanel/UserData";
 import ShoppingList from "./components/UserPanel/ShoppingList";
 import ProductsPanel from "./components/ProductsPanel/ProductsPanel";
 import AddProduct from "./components/UserPanel/AddProduct";
+import ProductView from "./components/ProductView/ProductView";
 
 function App() {
     return (
@@ -35,6 +36,10 @@ function App() {
                         element={<ProductsPage />}
                     />
                     <Route path="/dodaj-produkt" element={<AddProductPage />} />
+                    <Route
+                        path="/produkt/:productID/:model/:manufacturer/:price/:quantity"
+                        element={<ProductDetailPage />}
+                    />
                 </Routes>
             </div>
         </Router>
@@ -135,6 +140,17 @@ function AddProductPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <AddProduct isLoggedIn={isLoggedIn} />
+        </>
+    );
+}
+
+function ProductDetailPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <ProductView isLoggedIn={isLoggedIn} />
         </>
     );
 }

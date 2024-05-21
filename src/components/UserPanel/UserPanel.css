@@ -1,32 +1,36 @@
-.userPanel{
+.userPanel {
     display: flex;
 }
 
-.UserPanelSideNav{
+.orderDetails{
+    display: flex;
+}
+
+.UserPanelSideNav {
     height: 100vh;
     background-color: #333;
     color: white;
     padding: 10px;
 }
 
-#sideNav{
+#sideNav {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 20px;
 }
 
-#sideNav a{
+#sideNav a {
     cursor: pointer;
     text-decoration: none;
     color: inherit;
 }
 
-#sideNav b{
+#sideNav b {
     margin-left: 10px;
 }
 
-#userPanelContent{
+#userPanelContent {
     background-color: #FDFCFA;
     width: 100%;
     padding: 10px;
@@ -34,7 +38,7 @@
     text-align: center;
 }
 
-#userDataContent{
+#userDataContent {
     background-color: #FDFCFA;
     width: 100%;
     padding: 10px;
@@ -44,15 +48,15 @@
     flex-direction: column;
 }
 
-#userData{
+#userData {
     width: 300px;
 }
 
-#error{
+#error {
     text-align: center;
 }
 
-#shoppingListContent{
+#shoppingListContent {
     background-color: #FDFCFA;
     width: 100%;
     padding: 10px;
@@ -60,15 +64,22 @@
     text-align: center;
 }
 
-#addProductContent{
+#orderDetailsContent {
+    background-color: #FDFCFA;
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+#addProductContent {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
-    
 }
 
-#addProductContent form{
+#addProductContent form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -77,16 +88,63 @@
 }
 
 #addProductContent input,
-form select{
+form select {
     border-radius: 5px;
     font-size: 14px;
     width: 50%;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.25);
 }
 
-#addProductContent button{
+#addProductContent button {
     padding: 5px;
     font-size: 14px;
     border-radius: 5px;
     width: 50%
+}
+
+#shoppingListContent {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+#shoppingListContent h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#shoppingListContent p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer; 
+}
+
+#userPanelContent {
+    padding: 20px;
+    background-color: #f9f9f9;
+    flex: 1;
+}
+
+#userPanelContent h2 {
+    color: #333;
 }

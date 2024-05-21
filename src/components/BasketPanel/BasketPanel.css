@@ -40,12 +40,25 @@
     background-color: darkred;
 }
 
-/* Usuń obramowanie dla kolumny "Usuń" */
 .basket-panel td:last-child {
     border: none;
 }
 
-/* Ukryj nagłówek kolumny "Usuń" */
 .basket-panel th:last-child {
     display: none;
+}
+
+.order-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.order-button:hover {
+    background-color: #0056b3;
 }

@@ -148,3 +148,23 @@ tr:hover {
 #userPanelContent h2 {
     color: #333;
 }
+
+#downloadInvoiceButton {
+    background-color: #4CAF50; 
+    border: none; 
+    color: white; 
+    padding: 15px 32px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 10px 2px; 
+    cursor: pointer; 
+    border-radius: 4px; 
+    transition: background-color 0.3s; 
+}
+
+#downloadInvoiceButton:hover {
+    background-color: #45a049; 
+}
+

@@ -22,7 +22,7 @@ const OrderDetails = () => {
                 setOrderDetails(data.orderDetails);
                 setInvoiceGuid(data.invoiceGuid);
             } catch (error) {
-                console.error(error.Message);
+                console.error(error.message);
             }
         };
 
@@ -53,7 +53,7 @@ const OrderDetails = () => {
                     <tbody>
                         {orderDetails.map((detail) => (
                             <tr key={detail.orderDetailId}>
-                                <td>{detail.componentId}</td>
+                                <td>{`${detail.component.manufacturer} ${detail.component.model}`}</td>
                                 <td>{detail.quantity}</td>
                                 <td>{detail.pricePerUnit.toFixed(2)}zł</td>
                                 <td>
@@ -66,7 +66,12 @@ const OrderDetails = () => {
                         ))}
                     </tbody>
                 </table>
-                <button onClick={handleDownloadInvoice}>Pobierz fakturę</button>
+                <button
+                    id="downloadInvoiceButton"
+                    onClick={handleDownloadInvoice}
+                >
+                    Pobierz fakturę
+                </button>
             </div>
         </div>
     );

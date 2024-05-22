@@ -12,6 +12,7 @@ import ShoppingList from "./components/UserPanel/ShoppingList";
 import ProductsPanel from "./components/ProductsPanel/ProductsPanel";
 import AddProduct from "./components/UserPanel/AddProduct";
 import ProductView from "./components/ProductView/ProductView";
+import OrderDetails from "./components/UserPanel/OrderDetails";
 
 function App() {
     return (
@@ -39,6 +40,10 @@ function App() {
                     <Route
                         path="/produkt/:productID/:model/:manufacturer/:price/:quantity"
                         element={<ProductDetailPage />}
+                    />
+                    <Route
+                        path="/order/:orderId"
+                        element={<OrderDetailsPage />}
                     />
                 </Routes>
             </div>
@@ -72,8 +77,8 @@ function BasketPage() {
 
     return (
         <>
-            <Header />
-            <BasketPanel />
+            <Header isLoggedIn={isLoggedIn} />
+            <BasketPanel isLoggedIn={isLoggedIn} />
         </>
     );
 }
@@ -151,6 +156,17 @@ function ProductDetailPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <ProductView isLoggedIn={isLoggedIn} />
+        </>
+    );
+}
+
+function OrderDetailsPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <OrderDetails />
         </>
     );
 }

@@ -35,11 +35,9 @@ const LoginPanel = () => {
             );
 
             if (response.status === 200) {
-                //po ewentualny cookies
                 const responseJson = await response.json();
                 const cookie = responseJson.cookie[0];
                 const username = responseJson.userName;
-                console.log(cookie);
 
                 const cookieAttributes = cookie
                     .split("; ")

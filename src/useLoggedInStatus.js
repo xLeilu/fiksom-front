@@ -13,7 +13,7 @@ export const useLoggedInStatus = () => {
     const checkLoggedIn = (name) => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
-        console.log(value);
+
         if (parts.length === 2) {
             const cookieValue = parts.pop().split(";").shift();
             return !!cookieValue;

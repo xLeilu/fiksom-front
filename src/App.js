@@ -99,7 +99,6 @@ function RegisterPage() {
 
     return (
         <>
-            <Header />
             <RegisterPanel />
         </>
     );

@@ -47,14 +47,9 @@ const UserData = ({ isLoggedIn }) => {
     };
 
     const handleEditUserData = () => {
-        navigate("/edit-user-data", {
-            state: {
-                userId: userData.id,
-                userName: userData.userName,
-                email: userData.email,
-                phoneNumber: userData.phoneNumber,
-            },
-        });
+        navigate(
+            `/edit-user-data/${userData.id}/${userData.userName}/${userData.email}/${userData.phoneNumber}`
+        );
     };
 
     return (

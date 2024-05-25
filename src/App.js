@@ -52,7 +52,7 @@ function App() {
                         element={<EditPasswordPage />}
                     />
                     <Route
-                        path="/edit-user-data"
+                        path="/edit-user-data/:userId/:userName/:email/:phoneNumber"
                         element={<EditUserDataPage />}
                     />
                 </Routes>

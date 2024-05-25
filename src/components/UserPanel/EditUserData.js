@@ -1,18 +1,100 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import SideNav from "./SideNav/SideNav";
+import { useNavigate } from "react-router-dom";
+import "./UserPanel.css";
 
 const EditUserData = () => {
-    const location = useLocation();
-    const { userId, userName, email, phoneNumber } = location.state;
+    const { userId, userName, email, phoneNumber } = useParams();
+    const [newUserName, setNewUserName] = useState(userName);
+    const [newEmail, setNewEmail] = useState(email);
+    const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch(
+                "http://localhost:5046/api/account/EditUser",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        Id: userId,
+                        UserName: newUserName,
+                        Email: newEmail,
+                        PhoneNumber: newPhoneNumber,
+                    }),
+                }
+            );
+
+            if (response.ok) {
+                alert("Dane użytkownika zostały pomyślnie zmienione.");
+                setSuccess("Dane użytkownika zostały pomyślnie zmienione.");
+                setError("");
+                navigate("/dane-uzytkownika");
+            } else {
+                const errorData = await response.json();
+                setError(
+                    errorData.message ||
+                        "Wystąpił błąd podczas zmiany danych użytkownika."
+                );
+                setSuccess("");
+            }
+        } catch (error) {
+            console.error("Błąd:", error);
+            setError("Wystąpił błąd podczas zmiany danych użytkownika.");
+            setSuccess("");
+        }
+    };
 
     return (
-        <div>
-            <h2>Zmień dane</h2>
-            <p>User ID: {userId}</p>
-            <p>User Name: {userName}</p>
-            <p>Email: {email}</p>
-            <p>Phone Number: {phoneNumber}</p>
-            {/* Formularz do zmiany danych użytkownika */}
+        <div className="editUserDataPanel">
+            <SideNav />
+            <div id="editUserDataContent">
+                <h2>Edytuj dane użytkownika</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="newUserName">Nazwa użytkownika:</label>
+                        <input
+                            type="text"
+                            id="newUserName"
+                            value={newUserName}
+                            onChange={(e) => setNewUserName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="newEmail">Adres email:</label>
+                        <input
+                            type="email"
+                            id="newEmail"
+                            value={newEmail}
+                            onChange={(e) => setNewEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="newPhoneNumber">Numer telefonu:</label>
+                        <input
+                            type="text"
+                            id="newPhoneNumber"
+                            value={newPhoneNumber}
+                            onChange={(e) => setNewPhoneNumber(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Zapisz zmiany</button>
+                </form>
+                {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
+            </div>
         </div>
     );
 };

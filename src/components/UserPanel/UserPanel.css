@@ -6,6 +6,14 @@
     display: flex;
 }
 
+.editPassPanel {
+    display: flex;
+}
+
+.editUserDataPanel{
+    display: flex;
+}
+
 .UserPanelSideNav {
     height: 100vh;
     background-color: #333;
@@ -168,3 +176,137 @@ tr:hover {
     background-color: #45a049; 
 }
 
+#editPasswordContent {
+    background-color: #FDFCFA;
+    padding: 10px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#editPasswordContent form {
+    display: flex;
+    flex-direction: column;
+}
+
+#editPasswordContent .form-group {
+    margin-bottom: 15px;
+}
+
+#editPasswordContent label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#editPasswordContent input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#editPasswordContent button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#editPasswordContent button:hover {
+    background-color: #0056b3;
+}
+
+#editPasswordContent .error {
+    color: red;
+    margin-top: 10px;
+}
+
+#editPasswordContent .success {
+    color: green;
+    margin-top: 10px;
+}
+
+#editUserDataContent {
+    background-color: #FDFCFA;
+    padding: 10px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#editUserDataContent form {
+    display: flex;
+    flex-direction: column;
+}
+
+#editUserDataContent .form-group {
+    margin-bottom: 15px;
+}
+
+#editUserDataContent label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#editUserDataContent input[type="text"],
+#editUserDataContent input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#editUserDataContent button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#editUserDataContent button:hover {
+    background-color: #0056b3;
+}
+
+#editUserDataContent .error {
+    color: red;
+    margin-top: 10px;
+}
+
+#editUserDataContent .success {
+    color: green;
+    margin-top: 10px;
+}
+
+#userDataContent button {
+    padding: 5px 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+#userDataContent button:hover {
+    background-color: #0056b3;
+}

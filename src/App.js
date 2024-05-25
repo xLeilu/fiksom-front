@@ -13,6 +13,8 @@ import ProductsPanel from "./components/ProductsPanel/ProductsPanel";
 import AddProduct from "./components/UserPanel/AddProduct";
 import ProductView from "./components/ProductView/ProductView";
 import OrderDetails from "./components/UserPanel/OrderDetails";
+import EditPassword from "./components/UserPanel/EditPassword";
+import EditUserData from "./components/UserPanel/EditUserData";
 
 function App() {
     return (
@@ -44,6 +46,14 @@ function App() {
                     <Route
                         path="/order/:orderId"
                         element={<OrderDetailsPage />}
+                    />
+                    <Route
+                        path="/edit-password/:userId"
+                        element={<EditPasswordPage />}
+                    />
+                    <Route
+                        path="/edit-user-data/:userId/:userName/:email/:phoneNumber"
+                        element={<EditUserDataPage />}
                     />
                 </Routes>
             </div>
@@ -166,6 +176,28 @@ function OrderDetailsPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <OrderDetails />
+        </>
+    );
+}
+
+function EditPasswordPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <EditPassword />
+        </>
+    );
+}
+
+function EditUserDataPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <EditUserData />
         </>
     );
 }

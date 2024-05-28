@@ -4,15 +4,16 @@ import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 
 const ShoppingList = ({ isLoggedIn }) => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch(
-                    "http://localhost:5046/api/order/GetMyOrders",
-                    { method: "GET", credentials: "include" }
-                );
+                const response = await fetch(`${host}/order/GetMyOrders`, {
+                    method: "GET",
+                    credentials: "include",
+                });
                 if (!response.ok) {
                     console.error("Wystąpił błąd pobierania danych");
                 }

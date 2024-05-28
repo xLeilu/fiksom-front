@@ -4,6 +4,7 @@ import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 
 const OrderDetails = () => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const { orderId } = useParams();
     const [orderDetails, setOrderDetails] = useState([]);
     const [invoiceGuid, setInvoiceGuid] = useState("");
@@ -12,7 +13,7 @@ const OrderDetails = () => {
         const fetchOrderDetails = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:5046/api/order/GetOrderDetails/${orderId}`,
+                    `${host}/order/GetOrderDetails/${orderId}`,
                     { method: "GET", credentials: "include" }
                 );
                 if (!response.ok) {
@@ -31,7 +32,7 @@ const OrderDetails = () => {
 
     const handleDownloadInvoice = () => {
         window.open(
-            `http://localhost:5046/api/InvoiceDocument/GetInvoice/${invoiceGuid}`,
+            `${host}/InvoiceDocument/GetInvoice/${invoiceGuid}`,
             "_blank"
         );
     };

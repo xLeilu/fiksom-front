@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserPanel.css";
 
 const EditUserData = () => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const { userId, userName, email, phoneNumber } = useParams();
     const [newUserName, setNewUserName] = useState(userName);
     const [newEmail, setNewEmail] = useState(email);
@@ -17,22 +18,19 @@ const EditUserData = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch(
-                "http://localhost:5046/api/account/EditUser",
-                {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        Id: userId,
-                        UserName: newUserName,
-                        Email: newEmail,
-                        PhoneNumber: newPhoneNumber,
-                    }),
-                }
-            );
+            const response = await fetch(`${host}/account/EditUser`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    Id: userId,
+                    UserName: newUserName,
+                    Email: newEmail,
+                    PhoneNumber: newPhoneNumber,
+                }),
+            });
 
             if (response.ok) {
                 alert("Dane użytkownika zostały pomyślnie zmienione.");

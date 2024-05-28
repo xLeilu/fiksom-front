@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserPanel.css";
 
 const EditPassword = () => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const { userId } = useParams();
     const [CurrentPassword, setCurrentPassword] = useState("");
     const [NewPassword, setNewPassword] = useState("");
@@ -23,21 +24,18 @@ const EditPassword = () => {
         }
 
         try {
-            const response = await fetch(
-                "http://localhost:5046/api/account/ChangePassword",
-                {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        userId,
-                        CurrentPassword,
-                        NewPassword,
-                    }),
-                }
-            );
+            const response = await fetch(`${host}/account/ChangePassword`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId,
+                    CurrentPassword,
+                    NewPassword,
+                }),
+            });
 
             console.log(userId, CurrentPassword, NewPassword);
 

@@ -4,18 +4,16 @@ import imgFile from "./placeholder.png";
 import "./ProductView.css";
 
 const ProductView = () => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const { model, manufacturer, price, productID, quantity } = useParams();
     const isOutOfStock = quantity === "0";
 
     const handleAddToCart = async () => {
         try {
-            const response = await fetch(
-                `http://localhost:5046/api/cart/buy/${productID}`,
-                {
-                    method: "PUT",
-                    credentials: "include",
-                }
-            );
+            const response = await fetch(`${host}/cart/buy/${productID}`, {
+                method: "PUT",
+                credentials: "include",
+            });
 
             if (response.ok) {
                 alert("Dodano do koszyka");

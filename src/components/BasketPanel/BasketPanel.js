@@ -3,12 +3,14 @@ import "./BasketPanel.css";
 import { useNavigate } from "react-router-dom";
 
 const BasketPanel = ({ isLoggedIn }) => {
+    const host = process.env.REACT_APP_API_BASE_URL;
+
     const navigate = useNavigate();
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5046/api/cart/getcart", {
+        fetch(`${host}/cart/getcart`, {
             method: "GET",
             credentials: "include",
         })
@@ -23,7 +25,7 @@ const BasketPanel = ({ isLoggedIn }) => {
     }, []);
 
     const handleRemove = (componentId) => {
-        fetch(`http://localhost:5046/api/cart/remove/${componentId}`, {
+        fetch(`${host}/cart/remove/${componentId}`, {
             method: "DELETE",
             credentials: "include",
         })
@@ -48,13 +50,10 @@ const BasketPanel = ({ isLoggedIn }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(
-                "http://localhost:5046/api/order/placeorder",
-                {
-                    method: "POST",
-                    credentials: "include",
-                }
-            );
+            const response = await fetch(`${host}/order/placeorder`, {
+                method: "POST",
+                credentials: "include",
+            });
 
             if (response.status === 200) {
                 alert("Złozono zamówienie");

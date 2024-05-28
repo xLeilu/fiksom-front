@@ -4,6 +4,7 @@ import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 
 const UserData = ({ isLoggedIn }) => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const [userData, setUserData] = useState({});
     const [loadingData, setLoadingData] = useState(true);
     const navigate = useNavigate();
@@ -11,16 +12,13 @@ const UserData = ({ isLoggedIn }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(
-                    "http://localhost:5046/api/Account/GetLoggedUser",
-                    {
-                        method: "GET",
-                        credentials: "include",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
+                const response = await fetch(`${host}/Account/GetLoggedUser`, {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
 
                 if (response.ok) {
                     const data = await response.json();

@@ -3,6 +3,8 @@ import "./LoginPanel.css";
 import { useNavigate } from "react-router-dom";
 
 const LoginPanel = () => {
+    const host = process.env.REACT_APP_API_BASE_URL;
+
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -22,17 +24,14 @@ const LoginPanel = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(
-                "http://localhost:5046/api/account/SignIn",
-                {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                }
-            );
+            const response = await fetch(`${host}/account/SignIn`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
             if (response.status === 200) {
                 const responseJson = await response.json();

@@ -3,6 +3,7 @@ import "./RegisterPanel.css";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPanel = () => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -34,17 +35,14 @@ const RegisterPanel = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(
-                "http://localhost:5046/api/Account/SignUp",
-                {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                }
-            );
+            const response = await fetch(`${host}/Account/SignUp`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
             if (response.status === 200) {
                 alert("Rejestracja pomyślna");

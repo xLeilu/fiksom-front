@@ -5,6 +5,8 @@ import ProductItem from "./ProductItem";
 import CategoriesNav from "./SideNav/CategoriesNav";
 
 const ProductsPanel = ({ isLoggedIn }) => {
+    const host = process.env.REACT_APP_API_BASE_URL;
+
     const [productsList, setProductsList] = useState([]);
     const { productType } = useParams();
 
@@ -13,7 +15,7 @@ const ProductsPanel = ({ isLoggedIn }) => {
             try {
                 const type = productType || "";
                 const response = await fetch(
-                    `http://localhost:5046/api/component/getcomponentsbytype/${type}`,
+                    `${host}/component/getcomponentsbytype/${type}`,
                     {
                         method: "GET",
                         headers: {

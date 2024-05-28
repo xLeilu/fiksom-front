@@ -4,6 +4,7 @@ import SideNav from "./SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = ({ isLoggedIn }) => {
+    const host = process.env.REACT_APP_API_BASE_URL;
     const navigate = useNavigate();
 
     const [Component, setComponent] = useState({
@@ -21,16 +22,13 @@ const AddProduct = ({ isLoggedIn }) => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch(
-                    "http://localhost:5046/api/component/gettypes",
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        credentials: "include",
-                    }
-                );
+                const response = await fetch(`${host}/component/gettypes`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                });
                 if (response.ok) {
                     const data = await response.json();
                     setCategories(data);
@@ -77,14 +75,11 @@ const AddProduct = ({ isLoggedIn }) => {
         }
 
         try {
-            const response = await fetch(
-                "http://localhost:5046/api/Component/UpsertComponent",
-                {
-                    method: "POST",
-                    credentials: "include",
-                    body: formData,
-                }
-            );
+            const response = await fetch(`${host}/Component/UpsertComponent`, {
+                method: "POST",
+                credentials: "include",
+                body: formData,
+            });
 
             if (response.status === 200) {
                 alert("Dodano produkt pomyślnie");

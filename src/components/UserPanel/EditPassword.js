@@ -37,8 +37,6 @@ const EditPassword = () => {
                 }),
             });
 
-            console.log(userId, CurrentPassword, NewPassword);
-
             if (response.ok) {
                 alert("Hasło zostało pomyślnie zmienione.");
                 setSuccess("Hasło zostało pomyślnie zmienione.");

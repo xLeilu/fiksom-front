@@ -17,12 +17,12 @@ const AddProduct = ({ isLoggedIn }) => {
 
     const [image, setImage] = useState(null);
 
-    const [categories, setCategories] = useState({});
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch(`${host}/component/gettypes`, {
+                const response = await fetch(`${host}/componenttype/gettypes`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const AddProduct = ({ isLoggedIn }) => {
         };
 
         fetchCategories();
-    }, []);
+    }, [host]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -60,8 +60,14 @@ const AddProduct = ({ isLoggedIn }) => {
     const handleAddProduct = async (e) => {
         e.preventDefault();
 
+        // Find selected category
+        const selectedCategory = categories.find(
+            (category) => category.code === Component.ComponentType
+        );
+
         const formData = new FormData();
-        formData.append("Component.ComponentType", Component.ComponentType);
+        formData.append("Component.ComponentType.Code", selectedCategory.code);
+        formData.append("Component.ComponentType.Name", selectedCategory.name);
         formData.append("Component.Manufacturer", Component.Manufacturer);
         formData.append("Component.Model", Component.Model);
         formData.append("Component.Price", Component.Price);
@@ -112,13 +118,14 @@ const AddProduct = ({ isLoggedIn }) => {
                                 <option value="" disabled>
                                     Wybierz kategorię
                                 </option>
-                                {Object.entries(categories).map(
-                                    ([key, value]) => (
-                                        <option key={key} value={value}>
-                                            {value}
-                                        </option>
-                                    )
-                                )}
+                                {categories.map((category) => (
+                                    <option
+                                        key={category.code}
+                                        value={category.code}
+                                    >
+                                        {category.name}
+                                    </option>
+                                ))}
                             </select>
                             <input
                                 type="text"

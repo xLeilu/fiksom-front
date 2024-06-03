@@ -88,7 +88,9 @@ const BasketPanel = ({ isLoggedIn }) => {
                         <tbody>
                             {products.map((product, index) => (
                                 <tr key={index}>
-                                    <td>{product.component.componentType}</td>
+                                    <td>
+                                        {product.component.componentType.name}
+                                    </td>
                                     <td>
                                         {product.component.manufacturer}{" "}
                                         {product.component.model}

@@ -27,7 +27,7 @@ const ProductsPanel = ({ isLoggedIn }) => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
+
                     setProductsList(data || []);
                 } else if (response.status === 401) {
                     setProductsList([]);

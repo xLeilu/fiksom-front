@@ -31,7 +31,7 @@ const ProductView = () => {
             <div id="productView">
                 <div id="productDetails">
                     <h2>
-                        {manufacturer} {productID} {model}
+                        {manufacturer} {model}
                     </h2>
                     <img src={imgFile} alt={model} />
                 </div>

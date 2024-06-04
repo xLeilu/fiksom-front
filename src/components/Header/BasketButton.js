@@ -12,11 +12,13 @@ const BasketButton = () => {
     };
 
     return (
-        <FontAwesomeIcon
-            icon={faBasketShopping}
-            className="basket"
-            onClick={handleBasketClick}
-        />
+        <a>
+            <FontAwesomeIcon
+                icon={faBasketShopping}
+                className="basket"
+                onClick={handleBasketClick}
+            />
+        </a>
     );
 };
 

@@ -33,11 +33,13 @@ const Logout = () => {
     };
 
     return (
-        <FontAwesomeIcon
-            icon={faRightFromBracket}
-            className="logout"
-            onClick={handleLoginClick}
-        />
+        <a>
+            <FontAwesomeIcon
+                icon={faRightFromBracket}
+                className="logout"
+                onClick={handleLoginClick}
+            />
+        </a>
     );
 };
 

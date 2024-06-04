@@ -15,6 +15,7 @@ import ProductView from "./components/ProductView/ProductView";
 import OrderDetails from "./components/UserPanel/OrderDetails";
 import EditPassword from "./components/UserPanel/EditPassword";
 import EditUserData from "./components/UserPanel/EditUserData";
+import AddCategory from "./components/UserPanel/AddCategory";
 
 function App() {
     return (
@@ -54,6 +55,10 @@ function App() {
                     <Route
                         path="/edit-user-data/:userId/:userName/:email/:phoneNumber"
                         element={<EditUserDataPage />}
+                    />
+                    <Route
+                        path="/dodaj-kategorie"
+                        element={<AddCategoryPage />}
                     />
                 </Routes>
             </div>
@@ -198,6 +203,17 @@ function EditUserDataPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <EditUserData />
+        </>
+    );
+}
+
+function AddCategoryPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <AddCategory />
         </>
     );
 }

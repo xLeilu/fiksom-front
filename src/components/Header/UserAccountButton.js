@@ -12,11 +12,13 @@ const UserAccountButton = () => {
     };
 
     return (
-        <FontAwesomeIcon
-            icon={faUser}
-            className="profile"
-            onClick={handleUserAccClick}
-        />
+        <a>
+            <FontAwesomeIcon
+                icon={faUser}
+                className="profile"
+                onClick={handleUserAccClick}
+            />
+        </a>
     );
 };
 

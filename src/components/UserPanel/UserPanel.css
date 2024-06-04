@@ -14,6 +14,10 @@
     display: flex;
 }
 
+.addCategoryPanel {
+    display: flex;
+}
+
 .UserPanelSideNav {
     height: 100vh;
     background-color: #333;
@@ -308,5 +312,54 @@ tr:hover {
 }
 
 #userDataContent button:hover {
+    background-color: #0056b3;
+}
+
+#addCategoryContent {
+    background-color: #FDFCFA;
+    padding: 10px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#addCategoryContent form {
+    display: flex;
+    flex-direction: column;
+}
+
+#addCategoryContent .form-group {
+    margin-bottom: 15px;
+}
+
+#addCategoryContent label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#addCategoryContent input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#addCategoryContent button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#addCategoryContent button:hover {
     background-color: #0056b3;
 }

@@ -12,11 +12,13 @@ const LoginButton = () => {
     };
 
     return (
-        <FontAwesomeIcon
-            icon={faRightToBracket}
-            className="login"
-            onClick={handleLoginClick}
-        />
+        <a>
+            <FontAwesomeIcon
+                icon={faRightToBracket}
+                className="login"
+                onClick={handleLoginClick}
+            />
+        </a>
     );
 };
 

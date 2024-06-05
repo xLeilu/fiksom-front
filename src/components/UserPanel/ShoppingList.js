@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 
-const ShoppingList = ({ isLoggedIn }) => {
+const ShoppingList = ({ isLoggedIn, isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const [orders, setOrders] = useState([]);
 
@@ -31,7 +31,7 @@ const ShoppingList = ({ isLoggedIn }) => {
         <div className="userPanel">
             {isLoggedIn ? (
                 <>
-                    <SideNav />
+                    <SideNav isAdminStatus={isAdmin} />
                     <div id="shoppingListContent">
                         <h2>Historia zakupów</h2>
                         <p>Mozesz tutaj znaleźć historię swoich zakupów.</p>

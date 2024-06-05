@@ -3,7 +3,7 @@ import SideNav from "./SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
 import "./UserPanel.css";
 
-const AddCategory = () => {
+const AddCategory = ({ isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const [Code, setCode] = useState("");
     const [Name, setName] = useState("");
@@ -45,7 +45,7 @@ const AddCategory = () => {
 
     return (
         <div className="addCategoryPanel">
-            <SideNav />
+            <SideNav isAdminStatus={isAdmin} />
             <div id="addCategoryContent">
                 <h2>Dodaj kategorię</h2>
                 <form onSubmit={handleSubmit}>

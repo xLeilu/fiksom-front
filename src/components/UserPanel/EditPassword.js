@@ -4,7 +4,7 @@ import SideNav from "./SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
 import "./UserPanel.css";
 
-const EditPassword = () => {
+const EditPassword = ({ isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const { userId } = useParams();
     const [CurrentPassword, setCurrentPassword] = useState("");
@@ -58,7 +58,7 @@ const EditPassword = () => {
 
     return (
         <div className="editPassPanel">
-            <SideNav />
+            <SideNav isAdminStatus={isAdmin} />
             <div id="editPasswordContent">
                 <h2>Zmień hasło</h2>
                 <form onSubmit={handleSubmit}>

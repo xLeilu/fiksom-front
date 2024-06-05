@@ -3,7 +3,7 @@ import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
 
-const AddProduct = ({ isLoggedIn }) => {
+const AddProduct = ({ isLoggedIn, isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const navigate = useNavigate();
 
@@ -60,7 +60,6 @@ const AddProduct = ({ isLoggedIn }) => {
     const handleAddProduct = async (e) => {
         e.preventDefault();
 
-        // Find selected category
         const selectedCategory = categories.find(
             (category) => category.code === Component.ComponentType
         );
@@ -105,7 +104,7 @@ const AddProduct = ({ isLoggedIn }) => {
         <div className="userPanel">
             {isLoggedIn ? (
                 <>
-                    <SideNav />
+                    <SideNav isAdminStatus={isAdmin} />
                     <div id="addProductContent">
                         <h2>Dodawanie produktu</h2>
                         <form onSubmit={handleAddProduct}>

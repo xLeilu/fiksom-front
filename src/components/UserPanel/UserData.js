@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 
-const UserData = ({ isLoggedIn }) => {
+const UserData = ({ isLoggedIn, isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const [userData, setUserData] = useState({});
     const [loadingData, setLoadingData] = useState(true);
@@ -54,7 +54,7 @@ const UserData = ({ isLoggedIn }) => {
         <div className="userPanel">
             {isLoggedIn ? (
                 <>
-                    <SideNav />
+                    <SideNav isAdminStatus={isAdmin} />
                     <div id="userDataContent">
                         <h2>Twoje dane</h2>
                         {loadingData ? (

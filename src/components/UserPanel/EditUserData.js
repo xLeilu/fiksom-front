@@ -4,7 +4,7 @@ import SideNav from "./SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
 import "./UserPanel.css";
 
-const EditUserData = () => {
+const EditUserData = ({ isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const { userId, userName, email, phoneNumber } = useParams();
     const [newUserName, setNewUserName] = useState(userName);
@@ -54,7 +54,7 @@ const EditUserData = () => {
 
     return (
         <div className="editUserDataPanel">
-            <SideNav />
+            <SideNav isAdminStatus={isAdmin} />
             <div id="editUserDataContent">
                 <h2>Edytuj dane użytkownika</h2>
                 <form onSubmit={handleSubmit}>

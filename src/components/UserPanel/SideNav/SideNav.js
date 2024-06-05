@@ -7,7 +7,7 @@ import HomeUserPanel from "./HomeUserPanel";
 import AddProductButton from "./AddProductButton";
 import AddCategoryButton from "./AddCategoryButton";
 
-const SideNav = () => {
+const SideNav = ({ isAdminStatus }) => {
     const navigate = useNavigate();
 
     const handleShoppingListButtonClick = () => {
@@ -42,12 +42,18 @@ const SideNav = () => {
                 <a onClick={handleShoppingListButtonClick}>
                     <ShoppingListButton />
                 </a>
-                <a onClick={handleAddProductButtonClick}>
-                    <AddProductButton />
-                </a>
-                <a onClick={handleAddCategoryButtonClick}>
-                    <AddCategoryButton />
-                </a>
+                {isAdminStatus ? (
+                    <>
+                        <a onClick={handleAddProductButtonClick}>
+                            <AddProductButton />
+                        </a>
+                        <a onClick={handleAddCategoryButtonClick}>
+                            <AddCategoryButton />
+                        </a>
+                    </>
+                ) : (
+                    <></>
+                )}
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./UserPanel.css";
 import SideNav from "./SideNav/SideNav";
 
-const OrderDetails = () => {
+const OrderDetails = ({ isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const { orderId } = useParams();
     const [orderDetails, setOrderDetails] = useState([]);
@@ -39,7 +39,7 @@ const OrderDetails = () => {
 
     return (
         <div className="orderDetails">
-            <SideNav />
+            <SideNav isAdminStatus={isAdmin} />
             <div id="orderDetailsContent">
                 <h2>Szczegóły zamówienia</h2>
                 <table>

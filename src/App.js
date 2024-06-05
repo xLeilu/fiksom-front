@@ -16,6 +16,7 @@ import OrderDetails from "./components/UserPanel/OrderDetails";
 import EditPassword from "./components/UserPanel/EditPassword";
 import EditUserData from "./components/UserPanel/EditUserData";
 import AddCategory from "./components/UserPanel/AddCategory";
+import { useCheckAdminStatus } from "./useCheckAdminStatus";
 
 function App() {
     return (
@@ -100,11 +101,12 @@ function BasketPage() {
 
 function UserPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <UserPanel isLoggedIn={isLoggedIn} />
+            <UserPanel isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         </>
     );
 }
@@ -121,22 +123,24 @@ function RegisterPage() {
 
 function UserDataPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <UserData isLoggedIn={isLoggedIn} />
+            <UserData isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         </>
     );
 }
 
 function ShoppingListPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <ShoppingList isLoggedIn={isLoggedIn} />
+            <ShoppingList isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         </>
     );
 }
@@ -154,11 +158,12 @@ function ProductsPage() {
 
 function AddProductPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <AddProduct isLoggedIn={isLoggedIn} />
+            <AddProduct isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         </>
     );
 }
@@ -187,33 +192,36 @@ function OrderDetailsPage() {
 
 function EditPasswordPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <EditPassword />
+            <EditPassword isAdmin={isAdmin} />
         </>
     );
 }
 
 function EditUserDataPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <EditUserData />
+            <EditUserData isAdmin={isAdmin} />
         </>
     );
 }
 
 function AddCategoryPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <AddCategory />
+            <AddCategory isAdmin={isAdmin} />
         </>
     );
 }

@@ -19,6 +19,7 @@ const Logout = () => {
             });
 
             if (response.status === 200) {
+                document.cookie = "fikscomUser=;";
                 document.cookie = ".AspNetCore.Identity.Application=;";
 
                 alert("Wylogowano pomyślnie");

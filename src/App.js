@@ -17,6 +17,7 @@ import EditPassword from "./components/UserPanel/EditPassword";
 import EditUserData from "./components/UserPanel/EditUserData";
 import AddCategory from "./components/UserPanel/AddCategory";
 import { useCheckAdminStatus } from "./useCheckAdminStatus";
+import UsersOrders from "./components/UserPanel/UsersOrders";
 
 function App() {
     return (
@@ -60,6 +61,10 @@ function App() {
                     <Route
                         path="/dodaj-kategorie"
                         element={<AddCategoryPage />}
+                    />
+                    <Route
+                        path="/zamowienia-uzytkownikow"
+                        element={<UsersOrdersPage />}
                     />
                 </Routes>
             </div>
@@ -181,11 +186,12 @@ function ProductDetailPage() {
 
 function OrderDetailsPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <OrderDetails />
+            <OrderDetails isAdmin={isAdmin} />
         </>
     );
 }
@@ -222,6 +228,18 @@ function AddCategoryPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <AddCategory isAdmin={isAdmin} />
+        </>
+    );
+}
+
+function UsersOrdersPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <UsersOrders isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         </>
     );
 }

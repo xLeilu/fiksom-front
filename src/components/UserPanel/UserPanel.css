@@ -18,6 +18,10 @@
     display: flex;
 }
 
+.usersOrdersPanel {
+    display: flex;
+}
+
 .UserPanelSideNav {
     height: 100vh;
     background-color: #333;
@@ -72,6 +76,15 @@
     background-color: #FDFCFA;
     width: 100%;
     padding: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+#usersOrdersContent{
+    background-color: #FDFCFA;
+    width: 100%;
+    padding: 10px;
+    flex: 1;
     display: inline-block;
     text-align: center;
 }
@@ -387,3 +400,48 @@ tr:hover {
     color: white;
     border-radius: 5px;
 }
+
+.ordersTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ordersTable th, .ordersTable td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.ordersTable th {
+    background-color: #f2f2f2;
+}
+
+.ordersTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.paginationUsersOrders {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.paginationUsersOrders button {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #343a40;
+    padding: 8px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.paginationUsersOrders button:hover {
+    background-color: #e9ecef;
+}
+
+.paginationUsersOrders .active {
+    background-color: #007bff;
+    color: white;
+}
+

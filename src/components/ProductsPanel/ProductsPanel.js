@@ -10,6 +10,7 @@ const ProductsPanel = ({ isLoggedIn }) => {
     const { productType } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 9;
+    const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,21 +44,30 @@ const ProductsPanel = ({ isLoggedIn }) => {
         fetchData();
     }, [productType]);
 
+    const filteredProducts = productsList.filter((product) =>
+        (product.manufacturer + " " + product.model)
+            .toLowerCase()
+            .includes(searchValue.toLowerCase())
+    );
+
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = productsList.slice(
+    const currentProducts = filteredProducts.slice(
         indexOfFirstProduct,
         indexOfLastProduct
     );
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const totalPages = Math.ceil(productsList.length / productsPerPage);
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
     return (
         <div className="productListContent">
-            <CategoriesNav />
-            {productsList.length === 0 ? (
+            <CategoriesNav
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+            />
+            {filteredProducts.length === 0 ? (
                 <div id="productsListError">
                     <p>Brak produktów</p>
                 </div>

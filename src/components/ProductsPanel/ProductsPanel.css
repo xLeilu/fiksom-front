@@ -40,6 +40,7 @@
 #productsList {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 210px;
     grid-gap: 20px;
     flex-grow: 1; 
 }
@@ -87,4 +88,12 @@
 #pagination button:disabled {
     background-color: #e9ecef;
     cursor: not-allowed;
+}
+
+.productsPanelSideNav input {
+    width: 90%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }

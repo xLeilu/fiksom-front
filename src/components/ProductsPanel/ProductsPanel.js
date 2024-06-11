@@ -6,9 +6,10 @@ import CategoriesNav from "./SideNav/CategoriesNav";
 
 const ProductsPanel = ({ isLoggedIn }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
-
     const [productsList, setProductsList] = useState([]);
     const { productType } = useParams();
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 9;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,8 +28,8 @@ const ProductsPanel = ({ isLoggedIn }) => {
 
                 if (response.ok) {
                     const data = await response.json();
-
                     setProductsList(data || []);
+                    setCurrentPage(1);
                 } else if (response.status === 401) {
                     setProductsList([]);
                 } else {
@@ -42,6 +43,17 @@ const ProductsPanel = ({ isLoggedIn }) => {
         fetchData();
     }, [productType]);
 
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = productsList.slice(
+        indexOfFirstProduct,
+        indexOfLastProduct
+    );
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const totalPages = Math.ceil(productsList.length / productsPerPage);
+
     return (
         <div className="productListContent">
             <CategoriesNav />
@@ -52,9 +64,34 @@ const ProductsPanel = ({ isLoggedIn }) => {
             ) : (
                 <div id="productsListContainer">
                     <div id="productsList">
-                        {productsList.map((product) => (
+                        {currentProducts.map((product) => (
                             <ProductItem key={product.id} product={product} />
                         ))}
+                    </div>
+                    <div id="pagination">
+                        <button
+                            onClick={() => paginate(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            Poprzednia
+                        </button>
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index + 1}
+                                onClick={() => paginate(index + 1)}
+                                className={
+                                    currentPage === index + 1 ? "active" : ""
+                                }
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                        <button
+                            onClick={() => paginate(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                        >
+                            Następna
+                        </button>
                     </div>
                 </div>
             )}

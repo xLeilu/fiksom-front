@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import imgFile from "./placeholder.png";
 import "./ProductView.css";
+import ImageWithPlaceholder from "../ImageWithPlaceholder/ImageWithPlaceholder";
 
 const ProductView = () => {
     const host = process.env.REACT_APP_API_BASE_URL;
@@ -26,6 +26,8 @@ const ProductView = () => {
         }
     };
 
+    const imgEx = `${host}/component/GetComponentImage/${productID}`
+
     return (
         <div class="productContainer">
             <div id="productView">
@@ -33,7 +35,7 @@ const ProductView = () => {
                     <h2>
                         {manufacturer} {model}
                     </h2>
-                    <img src={imgFile} alt={model} />
+                    <ImageWithPlaceholder src={imgEx} alt={model} />
                 </div>
                 <div id="productInfo">
                     <p id="productPrice">cena: {price} zł</p>

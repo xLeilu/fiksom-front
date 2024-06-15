@@ -6,7 +6,7 @@ export const useLoggedInStatus = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const loggedIn = checkLoggedIn(".AspNetCore.Identity.Application");
+        const loggedIn = checkLoggedIn("fikscomUser");
         setIsLoggedIn(loggedIn);
     }, [location.pathname]);
 

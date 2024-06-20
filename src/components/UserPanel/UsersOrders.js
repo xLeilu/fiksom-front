@@ -46,8 +46,36 @@ const UsersOrders = ({ isLoggedIn, isAdmin }) => {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
-    const navigateToOrderDetails = (orderId) => {
-        navigate(`/order/${orderId}`);
+    const navigateToOrderDetails = (orderId, orderStatus) => {
+        navigate(`/order/${orderId}/${orderStatus}`);
+    };
+
+    const handleStatusChange = async (orderId, newStatus) => {
+        try {
+            const response = await fetch(`${host}/order/ChangeOrderStatus`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    orderId,
+                    orderStatus: newStatus,
+                }),
+            });
+            if (!response.ok) {
+                throw new Error("Failed to update order status");
+            }
+            setOrdersData((prevOrders) =>
+                prevOrders.map((order) =>
+                    order.orderId === orderId
+                        ? { ...order, status: newStatus }
+                        : order
+                )
+            );
+        } catch (error) {
+            console.error("Error updating order status:", error);
+        }
     };
 
     const indexOfLastOrder = currentPage * ordersPerPage;
@@ -83,25 +111,39 @@ const UsersOrders = ({ isLoggedIn, isAdmin }) => {
                                         <td
                                             onClick={() =>
                                                 navigateToOrderDetails(
-                                                    order.orderId
+                                                    order.orderId,
+                                                    order.status
                                                 )
                                             }
                                         >
                                             {formatDate(order.orderDate)}
                                         </td>
-                                        <td
-                                            onClick={() =>
-                                                navigateToOrderDetails(
-                                                    order.orderId
-                                                )
-                                            }
-                                        >
-                                            {order.status}
+                                        <td>
+                                            <select
+                                                value={order.status}
+                                                onChange={(e) =>
+                                                    handleStatusChange(
+                                                        order.orderId,
+                                                        e.target.value
+                                                    )
+                                                }
+                                            >
+                                                <option value="opłacone">
+                                                    Opłacone
+                                                </option>
+                                                <option value="dostarczone">
+                                                    Dostarczone
+                                                </option>
+                                                <option value="anulowane">
+                                                    Anulowane
+                                                </option>
+                                            </select>
                                         </td>
                                         <td
                                             onClick={() =>
                                                 navigateToOrderDetails(
-                                                    order.orderId
+                                                    order.orderId,
+                                                    order.status
                                                 )
                                             }
                                         >
@@ -110,7 +152,8 @@ const UsersOrders = ({ isLoggedIn, isAdmin }) => {
                                         <td
                                             onClick={() =>
                                                 navigateToOrderDetails(
-                                                    order.orderId
+                                                    order.orderId,
+                                                    order.status
                                                 )
                                             }
                                         >

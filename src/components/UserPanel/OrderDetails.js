@@ -5,7 +5,7 @@ import SideNav from "./SideNav/SideNav";
 
 const OrderDetails = ({ isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
-    const { orderId } = useParams();
+    const { orderId, orderStatus } = useParams();
     const [orderDetails, setOrderDetails] = useState([]);
     const [invoiceGuid, setInvoiceGuid] = useState("");
 
@@ -28,7 +28,7 @@ const OrderDetails = ({ isAdmin }) => {
         };
 
         fetchOrderDetails();
-    }, [orderId]);
+    }, [host, orderId]);
 
     const handleDownloadInvoice = () => {
         window.open(
@@ -67,12 +67,14 @@ const OrderDetails = ({ isAdmin }) => {
                         ))}
                     </tbody>
                 </table>
-                <button
-                    id="downloadInvoiceButton"
-                    onClick={handleDownloadInvoice}
-                >
-                    Pobierz fakturę
-                </button>
+                {orderStatus !== "anulowane" && (
+                    <button
+                        id="downloadInvoiceButton"
+                        onClick={handleDownloadInvoice}
+                    >
+                        Pobierz fakturę
+                    </button>
+                )}
             </div>
         </div>
     );

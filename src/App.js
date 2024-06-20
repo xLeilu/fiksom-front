@@ -48,7 +48,7 @@ function App() {
                         element={<ProductDetailPage />}
                     />
                     <Route
-                        path="/order/:orderId"
+                        path="/order/:orderId/:orderStatus"
                         element={<OrderDetailsPage />}
                     />
                     <Route

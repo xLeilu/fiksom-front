@@ -445,3 +445,65 @@ tr:hover {
     color: white;
 }
 
+#manageUserContent {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  #manageUserContent h2 {
+    margin-bottom: 20px;
+  }
+  
+  #manageUsersData table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #manageUsersData th, 
+  #manageUsersData td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  #manageUsersData th {
+    background-color: #f2f2f2;
+  }
+  
+  #manageUsersData tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #manageUsersData tr:hover {
+    background-color: #ddd;
+  }
+  
+  .lock {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .unlock {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .lock:hover,
+  .unlock:hover {
+    opacity: 0.8;
+  }
+  
+  #error {
+    color: red;
+    font-weight: bold;
+  }
+  
+  #manageUserContent {
+    text-align: center;
+  }

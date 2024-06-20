@@ -18,6 +18,7 @@ import EditUserData from "./components/UserPanel/EditUserData";
 import AddCategory from "./components/UserPanel/AddCategory";
 import { useCheckAdminStatus } from "./useCheckAdminStatus";
 import UsersOrders from "./components/UserPanel/UsersOrders";
+import ManageUsers from "./components/UserPanel/ManageUsers";
 
 function App() {
     return (
@@ -65,6 +66,10 @@ function App() {
                     <Route
                         path="/zamowienia-uzytkownikow"
                         element={<UsersOrdersPage />}
+                    />
+                    <Route
+                        path="/zarzadzaj-uzytkownikiem"
+                        element={<ManageUsersPage />}
                     />
                 </Routes>
             </div>
@@ -240,6 +245,18 @@ function UsersOrdersPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <UsersOrders isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
+        </>
+    );
+}
+
+function ManageUsersPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <ManageUsers isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
         </>
     );
 }

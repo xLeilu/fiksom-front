@@ -54,6 +54,8 @@ const LoginPanel = () => {
                 navigate("/");
             } else if (response.status === 401) {
                 alert("Błędy login lub hasło");
+            } else if (response.status === 403) {
+                alert("TWOJE KONTO JEST ZABLOKOWANE");
             } else {
                 throw new Error("Wystąpił problem z logowaniem");
             }

@@ -7,6 +7,7 @@ import HomeUserPanel from "./HomeUserPanel";
 import AddProductButton from "./AddProductButton";
 import AddCategoryButton from "./AddCategoryButton";
 import UsersOrdersButton from "./UsersOrdersButton";
+import ManageUsersButton from "./ManageUsersButton";
 
 const SideNav = ({ isAdminStatus }) => {
     const navigate = useNavigate();
@@ -34,6 +35,9 @@ const SideNav = ({ isAdminStatus }) => {
     const handleUsersOrdersButtonClick = () => {
         navigate("/zamowienia-uzytkownikow");
     };
+    const handleManageUsersButtonClick = () => {
+        navigate("/zarzadzaj-uzytkownikiem");
+    };
 
     return (
         <div className="UserPanelSideNav">
@@ -57,6 +61,9 @@ const SideNav = ({ isAdminStatus }) => {
                         </a>
                         <a onClick={handleUsersOrdersButtonClick}>
                             <UsersOrdersButton />
+                        </a>
+                        <a onClick={handleManageUsersButtonClick}>
+                            <ManageUsersButton />
                         </a>
                     </>
                 ) : (

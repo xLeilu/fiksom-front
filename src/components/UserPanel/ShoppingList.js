@@ -68,7 +68,7 @@ const ShoppingList = ({ isLoggedIn, isAdmin }) => {
                                         <td>{order.status}</td>
                                         <td>
                                             <Link
-                                                to={`/order/${order.orderId}`}
+                                                to={`/order/${order.orderId}/${order.status}`}
                                             >
                                                 Szczegóły
                                             </Link>

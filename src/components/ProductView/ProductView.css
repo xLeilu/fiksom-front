@@ -65,3 +65,69 @@
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+#editProductButton {
+    display: flex;
+    margin-bottom: 40px;
+    padding: 10px 15px;
+    background-color: #FFB347;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#editProductButton:hover {
+    background-color: #FFA500;
+}
+
+.modifyProductContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.modifyProductContent h2 {
+    margin-bottom: 20px;
+}
+
+.modifyProductContent form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.modifyProductContent form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.modifyProductContent form input,
+.modifyProductContent form select,
+.modifyProductContent form button {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.modifyProductContent form input[type="file"] {
+    padding: 3px;
+}
+
+.modifyProductContent form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.modifyProductContent form button:hover {
+    background-color: #0056b3;
+}

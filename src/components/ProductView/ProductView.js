@@ -1,12 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./ProductView.css";
 import ImageWithPlaceholder from "../ImageWithPlaceholder/ImageWithPlaceholder";
 
-const ProductView = () => {
+const ProductView = ({ isAdmin }) => {
     const host = process.env.REACT_APP_API_BASE_URL;
     const { model, manufacturer, price, productID, quantity } = useParams();
     const isOutOfStock = quantity === "0";
+    const navigate = useNavigate();
 
     const handleAddToCart = async () => {
         try {
@@ -26,10 +27,14 @@ const ProductView = () => {
         }
     };
 
-    const imgEx = `${host}/component/GetComponentImage/${productID}`
+    const handleEditProduct = () => {
+        navigate(`/modyfikuj/${productID}`);
+    };
+
+    const imgEx = `${host}/component/GetComponentImage/${productID}`;
 
     return (
-        <div class="productContainer">
+        <div className="productContainer">
             <div id="productView">
                 <div id="productDetails">
                     <h2>
@@ -38,6 +43,14 @@ const ProductView = () => {
                     <ImageWithPlaceholder src={imgEx} alt={model} />
                 </div>
                 <div id="productInfo">
+                    {isAdmin && (
+                        <button
+                            id="editProductButton"
+                            onClick={handleEditProduct}
+                        >
+                            Edytuj Produkt
+                        </button>
+                    )}
                     <p id="productPrice">cena: {price} zł</p>
                     <p id="productQuantity">dostępna ilość: {quantity}</p>
                     <button

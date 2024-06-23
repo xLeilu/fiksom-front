@@ -19,6 +19,7 @@ import AddCategory from "./components/UserPanel/AddCategory";
 import { useCheckAdminStatus } from "./useCheckAdminStatus";
 import UsersOrders from "./components/UserPanel/UsersOrders";
 import ManageUsers from "./components/UserPanel/ManageUsers";
+import ModifyProduct from "./components/ProductView/ModifyProduct";
 
 function App() {
     return (
@@ -70,6 +71,10 @@ function App() {
                     <Route
                         path="/zarzadzaj-uzytkownikiem"
                         element={<ManageUsersPage />}
+                    />
+                    <Route
+                        path="/modyfikuj/:productID"
+                        element={<ModifyProductPage />}
                     />
                 </Routes>
             </div>
@@ -180,11 +185,12 @@ function AddProductPage() {
 
 function ProductDetailPage() {
     const { isLoggedIn } = useLoggedInStatus();
+    const { isAdmin } = useCheckAdminStatus();
 
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
-            <ProductView isLoggedIn={isLoggedIn} />
+            <ProductView isAdmin={isAdmin} />
         </>
     );
 }
@@ -257,6 +263,17 @@ function ManageUsersPage() {
         <>
             <Header isLoggedIn={isLoggedIn} />
             <ManageUsers isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
+        </>
+    );
+}
+
+function ModifyProductPage() {
+    const { isLoggedIn } = useLoggedInStatus();
+
+    return (
+        <>
+            <Header isLoggedIn={isLoggedIn} />
+            <ModifyProduct isLoggedIn={isLoggedIn} />
         </>
     );
 }

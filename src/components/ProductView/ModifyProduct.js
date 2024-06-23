@@ -3,22 +3,59 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./ProductView.css";
 
 const ModifyProduct = ({ isLoggedIn }) => {
-    const { productID, manufacturer, model, price, quantity } = useParams();
+    const { productID } = useParams();
     const host = process.env.REACT_APP_API_BASE_URL;
     const navigate = useNavigate();
 
     const [Component, setComponent] = useState({
         ComponentType: "",
-        Manufacturer: manufacturer || "",
-        Model: model || "",
-        Price: parseFloat(price) || 0,
-        QuantityAvailable: parseInt(quantity) || 0,
+        Manufacturer: "",
+        Model: "",
+        Price: 0,
+        QuantityAvailable: 0,
+        Image: "",
     });
 
     const [image, setImage] = useState(null);
     const [categories, setCategories] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await fetch(
+                    `${host}/component/getcomponentbyid/${productID}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                    }
+                );
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setComponent({
+                        ComponentType: data.componentType.code || "",
+                        Manufacturer: data.manufacturer || "",
+                        Model: data.model || "",
+                        Price: parseFloat(data.price) || 0,
+                        QuantityAvailable:
+                            parseInt(data.quantityAvailable) || 0,
+                        Image: data.image || "",
+                    });
+                    setImage(null); // Ensure the image state is reset
+                } else {
+                    console.error("Failed to fetch product data");
+                }
+            } catch (error) {
+                console.error("Error fetching product data:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
         const fetchCategories = async () => {
             try {
                 const response = await fetch(`${host}/componenttype/gettypes`, {
@@ -41,7 +78,8 @@ const ModifyProduct = ({ isLoggedIn }) => {
         };
 
         fetchCategories();
-    }, [host]);
+        fetchProduct();
+    }, [host, productID]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -64,8 +102,14 @@ const ModifyProduct = ({ isLoggedIn }) => {
         );
 
         const formData = new FormData();
-        formData.append("Component.ComponentType.Code", selectedCategory.code);
-        formData.append("Component.ComponentType.Name", selectedCategory.name);
+        formData.append(
+            "Component.ComponentType.Code",
+            selectedCategory ? selectedCategory.code : ""
+        );
+        formData.append(
+            "Component.ComponentType.Name",
+            selectedCategory ? selectedCategory.name : ""
+        );
         formData.append("Component.ComponentId", productID);
         formData.append("Component.Manufacturer", Component.Manufacturer);
         formData.append("Component.Model", Component.Model);
@@ -77,6 +121,8 @@ const ModifyProduct = ({ isLoggedIn }) => {
 
         if (image != null) {
             formData.append("Image", image);
+        } else {
+            formData.append("Component.Image", Component.Image);
         }
 
         try {
@@ -87,24 +133,28 @@ const ModifyProduct = ({ isLoggedIn }) => {
             });
 
             if (response.status === 200) {
-                alert("Zaktualizowano produkt pomyślnie");
+                alert("Produkt został zaktualizowany");
                 navigate("/produkty");
             } else if (response.status === 401) {
-                alert("Błąd autoryzacji");
+                alert("Authorization error");
             } else {
-                throw new Error("Wystąpił problem z aktualizacją produktu");
+                throw new Error("Problem updating product");
             }
         } catch (error) {
-            console.error("Błąd: ", error);
-            alert("Wystąpił błąd podczas wysyłania danych");
+            console.error("Error: ", error);
+            alert("Error submitting data");
         }
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="modifyProductContent">
             {isLoggedIn ? (
                 <>
-                    <h2>Modyfikacja produktu</h2>
+                    <h2>Modyfikowanie produktu</h2>
                     <form onSubmit={handleModifyProduct}>
                         <label htmlFor="ComponentType">Kategoria</label>
                         <select
@@ -130,7 +180,7 @@ const ModifyProduct = ({ isLoggedIn }) => {
                             type="text"
                             id="Manufacturer"
                             name="Manufacturer"
-                            placeholder="Producent"
+                            placeholder="Manufacturer"
                             value={Component.Manufacturer}
                             onChange={handleInputChange}
                         />
@@ -148,7 +198,7 @@ const ModifyProduct = ({ isLoggedIn }) => {
                             type="number"
                             id="Price"
                             name="Price"
-                            placeholder="Cena"
+                            placeholder="Price"
                             value={Component.Price}
                             onChange={handleInputChange}
                         />
@@ -157,7 +207,7 @@ const ModifyProduct = ({ isLoggedIn }) => {
                             type="number"
                             id="QuantityAvailable"
                             name="QuantityAvailable"
-                            placeholder="Ilość"
+                            placeholder="Quantity"
                             value={Component.QuantityAvailable}
                             onChange={handleInputChange}
                         />
@@ -168,11 +218,14 @@ const ModifyProduct = ({ isLoggedIn }) => {
                             name="image"
                             onChange={handleFileChange}
                         />
+                        {Component.Image && (
+                            <p>Obecne zdjęcie: {Component.Image}</p>
+                        )}
                         <button
                             type="submit"
                             disabled={!Component.ComponentType}
                         >
-                            Zaktualizuj produkt
+                            Aktualizuj
                         </button>
                     </form>
                 </>

@@ -28,9 +28,7 @@ const ProductView = ({ isAdmin }) => {
     };
 
     const handleEditProduct = () => {
-        navigate(
-            `/modyfikuj/${productID}/${model}/${manufacturer}/${price}/${quantity}`
-        );
+        navigate(`/modyfikuj/${productID}`);
     };
 
     const imgEx = `${host}/component/GetComponentImage/${productID}`;

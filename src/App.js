@@ -73,7 +73,7 @@ function App() {
                         element={<ManageUsersPage />}
                     />
                     <Route
-                        path="/modyfikuj/:productID/:model/:manufacturer/:price/:quantity"
+                        path="/modyfikuj/:productID"
                         element={<ModifyProductPage />}
                     />
                 </Routes>
